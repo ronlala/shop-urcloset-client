@@ -22,6 +22,8 @@ function Closet(){
                  <button>Accessories</button>
                  <button>Outerwear</button>
                  </div>
+                 {/* made a change
+                  */}
                  <div className="body_closet_inventory">
                      <div >
                          <img src="public/images/Outerwear_temp_image.png" alt="Outerwear"/>
