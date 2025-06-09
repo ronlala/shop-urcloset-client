@@ -1,9 +1,12 @@
 
 function Itemcard(){
-    return ( <div>
+   
+    
+   
+   return ( <div>
 <main>
        {/* !-- Clothing Name Header --> < */}
-        <h1>Clothing Name Header </h1>
+        <h1>Clothing Item card </h1>
          {/* <!-- Clothing image box  goes here find an image to place here --> */}
         <form action="">
             <label htmlFor="text">Brand</label>

@@ -1,4 +1,22 @@
+// import { useEffect, useState } from "react";
 
+// function Closet(){
+// // Get data from all Closet inventory to display on the screen. 
+// const closetItems=() =>{
+//     const [clothing, setCloset] = useState([]);
+    
+//     useEffect(() =>{
+
+//         fetch()
+//         .then((request) =>{})
+//         .then((data) =>{
+//             setCloset(data);
+//         })
+//         .catch((error)=>{
+//             if(error.name === "Abort"){
+//                 console.log("fetch Aborted");
+//             }}  );   },[]);
+//     }
 function Closet(){
     return (
          <div>
@@ -7,7 +25,7 @@ function Closet(){
            
                 <h1>Your Closet</h1>
                 <div className="body_closet_addto">
-                    <button>Add to Your Closet</button> 
+                    <button>Add to Your Closet</button>     {/* needs to go to the item card*/} 
                 </div>
                
                  {/* <!-- add closet filter option buttons categories /Hardly worn / shirts/ pants /dresses_robes/ */}
@@ -29,7 +47,8 @@ function Closet(){
                          <img src="public/images/Outerwear_temp_image.png" alt="Outerwear"/>
                          <p>Description</p>
                          <p>Last Worn Date</p>
-                         <button>Wear</button>
+                         {/* adds to wear cart each item displayed */}
+                         <button>Wear</button>  
                      </div>
                      <div>
                          <img src="public/images/Dress_temp_image.png" alt="Dresses"/>
