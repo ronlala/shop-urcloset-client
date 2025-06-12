@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // function Closet(){
 // // Get data from all Closet inventory to display on the screen.
@@ -26,7 +27,7 @@ function Closet() {
         <div className="body_sizing">
           <h1>Your Closet</h1>
           <div className="body_closet_addto">
-            <button>Add to Your Closet</button>{" "}
+           <Link to="/addnewitem">  <button>Add to Your Closet</button> </Link>
             {/* needs to go to the item card*/}
           </div>
 
