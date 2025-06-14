@@ -2,11 +2,11 @@ import { useState ,useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import About from "./components/About";
 import Addnewitem from "./components/Addnewitem";
-import Closet from "./components/Closet";
-import Contact from "./components/Contact";
+import Closet from "./components/closet";
+import Contact from "./components/contact";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Cart from "./components/cart";
+import Cart from "./components/Cart";
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 import Itemcard from "./components/Itemcard";
@@ -43,16 +43,7 @@ function App() {
         <Route path= "/itemcard" element={<Itemcard/>} />
         {/* <Route path="/Update" element={<Update />} /> */}
       </Routes>
-      {/* <Header />
-      <About />
-      <Addnewitem />
-      <Closet />
-      <Contact />
-      <Home />
-      <Itemcard />
-      <Signup user={user} setUser={setUser} />
-      <Login user={user} setUser={setUser} />
-      <Cart /> */}
+   
 
       <Footer />
     </div>
