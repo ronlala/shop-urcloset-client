@@ -69,7 +69,7 @@ function Closet() {
           {/* made a change
            */}
           <div className="body_closet_inventory">
-            <div>
+            <div >
               <img
                 src="public/images/Outerwear_temp_image.png"
                 alt="Outerwear"

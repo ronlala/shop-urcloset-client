@@ -1,5 +1,6 @@
-import { useState } from "react";
-import "./contactstyles.css";
+// import { useState } from "react";
+
+<shared />
 
 function Contact() {
   return (
