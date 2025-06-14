@@ -6,7 +6,7 @@ import Closet from "./components/Closet";
 import Contact from "./components/Contact";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Cart from "./components/cart";
+import Cart from "./components/Cart";
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 import Itemcard from "./components/Itemcard";
