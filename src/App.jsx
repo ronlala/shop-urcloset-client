@@ -2,8 +2,8 @@ import { useState ,useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import About from "./components/About";
 import Addnewitem from "./components/Addnewitem";
-import Closet from "./components/closet";
-import Contact from "./components/contact";
+import Closet from "./components/Closet";
+import Contact from "./components/Contact"
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Cart from "./components/Cart";
