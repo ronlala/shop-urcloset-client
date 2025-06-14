@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <div className="footer">
@@ -21,17 +23,15 @@ function Footer() {
         </div>
         <div >
           <ul className="footer_menu">
+            <li> <Link to="/contact">Contact</Link> </li>
             <li>
-              <a href="contact.html">contact us</a>{" "}
+              <a href="Cookie Settings">cookie settings</a>
             </li>
             <li>
-              <a href="Cookie Settings">cookie settings</a>{" "}
+              <a href="tutorial"> How To</a>
             </li>
             <li>
-              <a href="tutorial"> How To</a>{" "}
-            </li>
-            <li>
-              <a href="terms"> Terms of Use</a>{" "}
+              <a href="terms"> Terms of Use</a>
             </li>
           </ul>
         </div>

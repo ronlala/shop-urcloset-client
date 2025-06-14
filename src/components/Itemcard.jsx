@@ -12,7 +12,7 @@ function Itemcard(){
             <label htmlFor="text">Brand</label>
             <input type="text" name="Brand" id="Brand" placeholder="Brand"/>
             <label htmlFor="color">Color</label>
-            <input type="Color" name="Color" id="Color" placeholder="Color"/>
+            <input type="Color" name="Color" id="Color" placeholder="Color"/>       
             <label htmlFor="Size">Size</label>
             <input type="text" name="Size" id="Size" placeholder="Size"/>
             <label htmlFor="Category">Category</label>

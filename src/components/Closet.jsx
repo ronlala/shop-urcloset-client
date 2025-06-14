@@ -1,15 +1,28 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // function Closet(){
 // // Get data from all Closet inventory to display on the screen.
-
+const categories = [
+   "Hardly Worn",
+            "Shirts",
+            "Pants",
+            "Dresses_robes",
+            "Skirts",
+            "Shoes",
+            "Accessories",
+            "Outerwear"
+]
 function Closet() {
-  const [clothing, setCloset] = useState([]);
+  
+  const [clothing, setClothing] = useState([]);
+  const [filterCategory, setFilterCategory] = useState("");
+
   useEffect(() => {
     fetch()
       .then((request) => {})
       .then((data) => {
-        setCloset(data);
+        setClothing(data);
       })
       .catch((error) => {
         if (error.name === "Abort") {
@@ -17,8 +30,21 @@ function Closet() {
         }
       });
   }, []);
+  // Function ( on click) for the list options and will run when the button is clicked) it will know what items
+  // to display and the State would need to save the filter option. It will be a type of string that will be blank .
+  //  The state is going to be updated. Once its updated. And you can automaticly filter by type in the page without fetching from the mongodb
+  useEffect(() => {
+    function closetFilter() {
+      setClothing((prevClothing) =>
+        prevClothing.filter((item) => item.category === filterCategory)
+      );
+    }
+    closetFilter();
+  }, [filterCategory]);
 
-  const closetItems = () => {};
+  
+  const closetItems = (index) => {setFilterCategory(categories[index])};
+  console.log(filterCategory);
 
   return (
     <div>
@@ -26,21 +52,19 @@ function Closet() {
         <div className="body_sizing">
           <h1>Your Closet</h1>
           <div className="body_closet_addto">
-            <button>Add to Your Closet</button>{" "}
+            <Link to="/addnewitem">
+            
+              <button>Add to Your Closet</button>
+            </Link>
             {/* needs to go to the item card*/}
           </div>
 
           {/* <!-- add closet filter option buttons categories /Hardly worn / shirts/ pants /dresses_robes/ */}
           {/* skirts/shoes/accessories/outerwear  --> */}
           <div className="body_closet_options">
-            <button>Hardly Worn</button>
-            <button>Shirts</button>
-            <button>Pants</button>
-            <button>Dresses_robes</button>
-            <button>Skirts</button>
-            <button>Shoes</button>
-            <button>Accessories</button>
-            <button>Outerwear</button>
+            {categories.map((category,index) => (<button onClick={()=>closetItems(index)}>{category}</button>))}
+            
+    
           </div>
           {/* made a change
            */}
