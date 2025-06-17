@@ -1,6 +1,19 @@
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams , useNavigate} from "react-router-dom";
+
 
 function Itemcard(){
    
+    //use state goes here for pulling 1 item
+    //Const clothing id = useParams()
+    // const navigate = use navigate()
+    // Use effect to fetch the base API that is in the closet component and slash with just clothing id and matches the use param
+    // const 
+    
+    // For delete you will need a handler function for deleting closet items 
+    // handler functions for the handle delete book 
+    // fetch with the method of delete with book id 
     
    
    return ( <div>
