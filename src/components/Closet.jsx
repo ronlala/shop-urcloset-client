@@ -14,10 +14,14 @@ const categories = [
             "Accessories",
             "Outerwear"
 ]
+
 function Closet() {
-  
+
   const [clothing, setClothing] = useState([]);
   const [filterCategory, setFilterCategory] = useState("");
+
+
+  //Use effect function to display all data
 
   useEffect(() => {
     fetch(`${API_BASE_URL}`)
@@ -32,6 +36,10 @@ function Closet() {
         }
       });
   }, []);
+
+  //Date display 
+
+  
   // Function ( on click) for the list options and will run when the button is clicked) it will know what items
   // to display and the State would need to save the filter option. It will be a type of string that will be blank .
   //  The state is going to be updated. Once its updated. And you can automaticly filter by type in the page without fetching from the mongodb
@@ -47,6 +55,13 @@ function Closet() {
   
   const closetItems = (index) => {setFilterCategory(categories[index])};
   console.log(filterCategory);
+console.log(clothing);
+const dateFormat = (date) => {
+  const myDate = new Date(date).toLocaleDateString()
+  console.log(myDate)
+  return myDate;
+
+};
 
   return (
     <div>
@@ -70,13 +85,13 @@ function Closet() {
            */}
           <div className="body_closet_inventory">
             <div>
-              {clothing.map((closetItem) =>   ( 
+              {clothing.map((closetItem) =>  
+                 ( 
                 <div>
-                <img
-                src="public/images/Outerwear_temp_image.png"
-                alt="Outerwear"/>
+             <img  src={closetItem.image} alt="image"/>
               <p>{closetItem.brand}</p>
-              <p>Last Worn Date</p>
+              <p>Purchase Date{dateFormat (closetItem.purchdate)}</p>
+              <p>category: {closetItem.category}</p>
               <Link to={`/itemcard/${closetItem._id} `}> 
               <button>Wear</button>
               </Link>
