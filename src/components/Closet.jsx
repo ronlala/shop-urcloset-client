@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Itemcard from "./Itemcard";
 
 // function Closet(){
 // // Get data from all Closet inventory to display on the screen.
@@ -52,11 +53,12 @@ function Closet() {
     closetFilter();
   }, [filterCategory]);
 
-  
+  // closet Filter categories 
   const closetItems = (index) => {setFilterCategory(categories[index])};
   console.log(filterCategory);
-console.log(clothing);
-const dateFormat = (date) => {
+     console.log(clothing);
+// Date format for for the purchase date g
+  const dateFormat = (date) => {
   const myDate = new Date(date).toLocaleDateString()
   console.log(myDate)
   return myDate;
