@@ -7,6 +7,7 @@ function Header(){
                <ul className="header_navigation_left">
                 <li> <Link to="/closet">Closet</Link> </li>
                 <li><Link to="/about">About</Link> </li>
+                <li><Link to="/itemcard ">itemcard</Link> </li>
                 <li><Link to= "/wearcart" className="fa-solid fa-shirt">Wear</Link> </li>
                </ul>
            </div>  

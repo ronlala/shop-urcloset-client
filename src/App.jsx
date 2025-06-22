@@ -10,6 +10,7 @@ import Cart from "./components/Cart";
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 import Itemcard from "./components/Itemcard";
+import Confirmationadd from "./components/Confirmationadd";
 import "./styles.css";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path= "/cart" element={<Cart/>} />
         <Route path= "/contact" element={<Contact/>} />
         <Route path= "/itemcard" element={<Itemcard/>} />
+        <Route path= "/confirmationadd" element={<Confirmationadd/>} />
         {/* <Route path="/Update" element={<Update />} /> */}
       </Routes>
    
