@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+
 import { useEffect, useState } from "react";
-import { useParams , useNavigate} from "react-router-dom";
+import {Link, useParams , useNavigate } from "react-router-dom";
 import React from "react";
+import { use } from "react";
 
 function Itemcard(){
-   
-    //use state goes here for pulling 1 item
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;  
+const {clothingId} = useParams();
+const navigate = useNavigate();
+//use state goes here for pulling 1 item
     //Const clothing id = useParams()
     // const navigate = use navigate()
     // Use effect to fetch the base API that is in the closet component and slash with just clothing id and matches the use param
@@ -14,8 +17,10 @@ function Itemcard(){
     // For delete you will need a handler function for deleting closet items 
     // handler functions for the handle delete book 
     // fetch with the method of delete with book id 
-
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// state to hold single item 
+const [clothingItem, setClothingItem] = useState(null);
+const [errorMessage, SetErrorMessage] = useState("");
+    
 
 //use state for form inputs 
 const [formData, setFormData] = useState({
@@ -25,15 +30,53 @@ const [formData, setFormData] = useState({
     size: "",
     category: "", 
     datePurchased: "",
-    purchasePrice: 1,
+    price: 1,
   });
 
-  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(()=> {
+  fetch(`${API_BASE_URL}api/closet/${closetID}`)
+  .then((response) => response.json())
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
+
+})
+  // use effect for fetching a single clothing item
+// useEffect(() => {
+//     if (clothingID) {
+//         fetch (`${API_BASE_URL}/api/wardrobe/${clothingId}`)
+//        .then(response => {
+//           if (!response.ok) {
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//           }
+//           return response.json();
+//         })
+//        .then(data) => {
+//         setClothingItem(data.data.wardrobe);
+        
+//         setFormData({
+//             brand: data.data.wardrobe.brand || "",
+//             image: data.data.wardrobe.image || "",
+//             color: data.data.wardrobe.color || "",
+//             size: data.data.wardrobe.size || "",
+//             category: data.data.wardrobe.category || "", 
+//             datePurchased: data.data.wardrobe.purchdate ? new Date(data.data.wardrobe.purchdate): "",
+//             price: data.data.wardrobe.price || 0,    
+//        });
+//        console.log("You have fetched a single closet item:", data.data.wardrobe);
+//     })
+//     .catch((error) => {
+//           console.error("Error fetching single item:", error);
+//           setErrorMessage("Failed to load item details. Please try again.");
+//           setClothingItem(null); // Clear item if fetch fails
+//         });
+//     }
+//   }, [clothingId, API_BASE_URL]);
+    
 
 
-  const handleChange = (e) => {
-   const value = e.target.value;
-   const name = e.target.name;
+const handleChange = (e) => {
+const {name , value} = e.target
+
 
    if ( name === "price") {
     const value = parseInt(value);   
