@@ -74,7 +74,7 @@ console.log(formData);
         .then((response) =>response.json())
         .then((result) => {
             console.log(result)
-            navigate('/closet');
+            navigate('/confirmationadd');
             setErrorMessage(result.error.message);})
         .catch(error => {
             console.log(error)
