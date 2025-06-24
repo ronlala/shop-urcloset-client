@@ -1,12 +1,11 @@
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-
+import {  useParams } from "react-router-dom";
+import "../itemcardstyles.css";
 
 function Itemcard(){
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;  
-const { clothingId } = useParams()
+const {clothingId} = useParams()
 console.log(clothingId);
 const [clothing, setClothing] = useState({});
 
@@ -27,8 +26,9 @@ const [errorMessage, SetErrorMessage] = useState("");
   useEffect(()=> {
   fetch(`${API_BASE_URL}/${clothingId}`)
   .then((response) => response.json())
-  .then((result) => setClothing(result.data.clothing));
+  .then((data) => setClothing(data));
   },[clothingId]);
+  console.log(clothing);
 //use state for form inputs 
 // const [formData, setFormData] = useState({
 //     brand: "",
@@ -100,11 +100,11 @@ console.log(API_BASE_URL);
    return ( 
    
    <div>
-<main>
+<main className="mainCard">
        {/* !-- Clothing Name Header --> < */}
-        <h1>Clothing Item card </h1>
+        <h1 className="heading">Clothing Item card </h1>
          {/* <!-- Clothing image box  goes here find an image to place here --> */}
-        <form onSubmit={handleUpdateSubmit} action="">
+        <form className ="formSelect" onSubmit={handleUpdateSubmit} action="">
             <label htmlFor="text">Brand</label>
             <input type="text" name="brand" id="brand" placeholder="Brand" defaultValue={clothing.brand}  />
             <label htmlFor="image">Image</label>
@@ -112,7 +112,7 @@ console.log(API_BASE_URL);
             <label htmlFor="color">Color</label>
             <input type="text" name="color" id="color" placeholder="color" defaultValue={clothing.color}  />
             <label htmlFor="Size">Size</label>
-            <input type="text" name="size" id="size" placeholder="Size"  value={clothing.size} />
+            <input type="text" name="size" id="size" placeholder="Size"  defaultValue={clothing.size} />
             <label htmlFor="category">Category</label>
             <select name="category" id="category"  >
                 <option value="Shoes">Shoes</option>
@@ -129,10 +129,12 @@ console.log(API_BASE_URL);
             <label htmlFor="price">Purchase Price</label>
             <input type="number" name="price" id="price" defaultValue={clothing.price}  />
              <button type="submit" >Add to Closet</button>
-             {errorMessage && <p>{errorMessage}</p>}
-         <button>Wear</button>
+             {errorMessage && <p className="itemform">{errorMessage}</p>}
+        <div className="Buttons"> <button>Wear</button>
         <button>Edit</button>
-        <button>Remove from Closet</button>
+        <button>Remove from Closet</button>  
+         </div>
+        
         </form>
     
   </main>

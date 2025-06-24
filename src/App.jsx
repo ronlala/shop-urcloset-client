@@ -36,13 +36,13 @@ function App() {
         <Route path="/about" element={<About />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
         {/* <Route path="/Signup" element={<Signup />} /> */}
-
+     
         <Route path="/login" element={<Login />} />
         <Route path="/closet" element={<Closet />} />
         <Route path= "/addnewitem" element={<Addnewitem/>}/> 
         <Route path= "/cart" element={<Cart/>} />
         <Route path= "/contact" element={<Contact/>} />
-        <Route path= "/itemcard/:_clothingItem" element={<Itemcard/>} />
+        <Route path= "/itemcard/:clothingId" element={<Itemcard/>} />
         <Route path= "/confirmationadd" element={<Confirmationadd/>} />
         {/* <Route path="/Update" element={<Update />} /> */}
       </Routes>

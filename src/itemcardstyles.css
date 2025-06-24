@@ -1,0 +1,96 @@
+/* Define CSS Variables for Colors - ONLY those provided by the user */
+:root {
+    --clay: #8d603f;
+    --beige: #fdf8f0;
+    --olive: #a7a376;
+    --greige: #61594f;
+    --white: #ffffff;
+    --dark-grey: #333;
+    --light-grey: #e0e0e0;
+}
+
+
+
+.mainCard { 
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Using dark-grey for shadow (rgba requires specific color, but keeping it subtle) */
+}
+
+.heading { 
+    text-align: center;
+    color: var(--clay); 
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    border-bottom: 2px solid var(--light-grey);
+    padding-bottom: 15px;
+}
+
+.clothingForm { 
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 20px 0;
+}
+
+.clothingForm label { /* Apply this class to your <label> elements */
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--greige); /* Using Greige for labels */
+    display: block;
+}
+
+
+.clothingForm select { /* Apply this class to your select element */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--olive);
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    color: var(--dark-grey); /* Ensure text color is readable */
+    background-color: var(--white); /* Ensure background is clear */
+}
+
+
+
+
+.Buttons { 
+    background-color: var(--white); 
+    color: var(--olive);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.Buttons :hover {
+    /* transform: translateY(-2px); */
+}
+
+
+
+.errorMessage { /* Apply this class to your <p> element for error messages */
+    color: var(--clay); /* Using clay for error messages, as it's a distinct color in your palette */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+}
+
+@media (min-width: 600px) {
+    .itemForm { /* Use the class for your form */
+        grid-template-columns: 1fr 1fr;
+    }
+
+    
+    .formSelect#category { /* Or a unique class like .categorySelect */
+        grid-column: span 2;
+    }
+}
