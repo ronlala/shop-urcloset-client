@@ -18,13 +18,10 @@ function Addnewitem() {
     image: "", 
     color: "",
     size: "",
-    category: "pants", 
+    category: "Dresses_robes", 
     purchdate: "",
     price: 1,
   });
-
-
-
 
   
   //Handle input changes
@@ -85,9 +82,6 @@ console.log(formData);
    console.log(errorMessage);
    console.log("formData: >>", formData);
 
-
-
-
     return(<main>
 
         <div>
@@ -102,7 +96,7 @@ console.log(formData);
             <label htmlFor="Size">Size</label>
             <input type="text" name="size" id="size" placeholder="Size" onChange={handleChange}/>
             <label htmlFor="category">Category</label>
-            <select name="category" id="category"  >
+            <select name="category" >
                 <option value="Shoes">Shoes</option>
                 <option value="Shirts">Shirts</option>
                 <option value="Pants">Pants</option>
