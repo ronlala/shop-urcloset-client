@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Itemcard from "./Itemcard";
+
 
 // function Closet(){
 // // Get data from all Closet inventory to display on the screen.
@@ -85,11 +85,11 @@ function Closet() {
           </div>
           {/* made a change
            */}
-          <div className="body_closet_inventory">
+          <div  className="body_closet_inventory">
             <div>
-              {clothing.map((closetItem) =>  
+              {clothing.map((closetItem) => 
                  ( 
-                <div>
+                <div key={closetItem._id}>
              <img  src={closetItem.image} alt="image"/>
               <p>{closetItem.brand}</p>
               <p>Purchase Date{dateFormat (closetItem.purchdate)}</p>
@@ -103,9 +103,7 @@ function Closet() {
           </div>
            
           </div>
-          {/* <!-- closet database show for all info in the database should be a three by three square for web / tablet  and two by two for phone --> */}
-
-          {/* <!-- <script src="" async defer></script> --> */}
+      
         </div>
       </main>
     </div>

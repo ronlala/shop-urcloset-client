@@ -1,11 +1,15 @@
 
 import { useEffect, useState } from "react";
-import {Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 
 function Itemcard(){
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;  
-const {clothingId} = useParams();
+const { clothingId } = useParams()
+console.log(clothingId);
+const [clothing, setClothing] = useState({});
+
 // const navigate = useNavigate();
 //use state goes here for pulling 1 item
     //Const clothing id = useParams()
@@ -20,62 +24,59 @@ const {clothingId} = useParams();
 // const [clothingItem, setClothingItem] = useState(null);
 const [errorMessage, SetErrorMessage] = useState("");
     
-
-//use state for form inputs 
-const [formData, setFormData] = useState({
-    brand: "",
-    image: "", 
-    color: "",
-    size: "",
-    category: "", 
-    datePurchased: "",
-    price: 1,
-  });
-
   useEffect(()=> {
-  fetch(`${API_BASE_URL}${clothingId}`)
+  fetch(`${API_BASE_URL}/${clothingId}`)
   .then((response) => response.json())
-  .then((data) => setFormData(data));
+  .then((result) => setClothing(result.data.clothing));
   },[clothingId]);
+//use state for form inputs 
+// const [formData, setFormData] = useState({
+//     brand: "",
+//     image: "", 
+//     color: "",
+//     size: "",
+//     category: "", 
+//     datePurchased: "",
+//     price: 1,
+//   });
+
+console.log(clothingId);
+console.log(clothing);
+console.log(API_BASE_URL);
     
 
 
-const handleChange = (e) => {
-const {name , value} = e.target;
-
-
-   if ( name === "price") {
-    const value = parseInt(value);   
-}
-  setFormData(prevFormData => ({
-    ...prevFormData,
-    [name]: value,
-}))
-  };
-console.log(formData);
-
-//Update handle submit for updating things in the item card.
 
  const handleUpdateSubmit = async (e) => {
     e.preventDefault();
+   const body = {
+      brand: e.target.brand.value,
+      image: e.target.image.value,
+      color: e.target.color.value,
+      size: e.target.size.value,
+     category: e.target.category.value, 
+      purchdate: e.target.datePurchased.value,
+      price: parseInt( e.target.purchasePrice.value) || 0,
+    }
+    console.log(body);
     console.log("submitted")
-    const URL = API_BASE_URL;
+    // const URL = API_BASE_URL;
 
-  fetch(`${URL}update/${clothingId}`,{
+  fetch(`${API_BASE_URL}update/${clothingId}`,{
      method: "PUT", 
      headers: {"Content-Type": "application/json",
      },
-            body: JSON.stringify(formData)})
+            body: JSON.stringify(body)})
         .then((response) =>response.json())
         .then((result) => {
             console.log(result);
-            setFormData(result);
+            // setFormData(result);
             SetErrorMessage(result.error.message);})
         .catch(error => {
             console.log(error)
             SetErrorMessage(error.message);  })
         };
-    console.log("form data is : " ,formData);
+
    console.log(errorMessage);
 
   //Delete handle submit .. For deleting things 
@@ -94,7 +95,7 @@ console.log(formData);
 //             console.log(error)
 //             setErrorMessage(error.message);  })
 //         };
-console.log("formData :   ", formData);
+
 
    return ( 
    
@@ -105,13 +106,13 @@ console.log("formData :   ", formData);
          {/* <!-- Clothing image box  goes here find an image to place here --> */}
         <form onSubmit={handleUpdateSubmit} action="">
             <label htmlFor="text">Brand</label>
-            <input type="text" name="brand" id="Brand" placeholder="Brand" value={formData.brand} onChange={handleChange} />
+            <input type="text" name="brand" id="brand" placeholder="Brand" defaultValue={clothing.brand}  />
             <label htmlFor="image">Image</label>
-            <input type="text" name="image" id="image" placeholder="ImageURL" value={formData.image} onChange={handleChange} />
+            <input type="text" name="image" id="image" placeholder="ImageURL" defaultValue={clothing.image}  />
             <label htmlFor="color">Color</label>
-            <input type="text" name="color" id="color" placeholder="color" value={formData.color} onChange={handleChange} />
+            <input type="text" name="color" id="color" placeholder="color" defaultValue={clothing.color}  />
             <label htmlFor="Size">Size</label>
-            <input type="text" name="size" id="size" placeholder="Size"  value={formData.size} onChange={handleChange}/>
+            <input type="text" name="size" id="size" placeholder="Size"  value={clothing.size} />
             <label htmlFor="category">Category</label>
             <select name="category" id="category"  >
                 <option value="Shoes">Shoes</option>
@@ -124,17 +125,16 @@ console.log("formData :   ", formData);
                 <option value="Outerwear">Outerwear</option>
             </select>
             <label htmlFor="purchdate">Date Purchased</label>
-            <input type="date" name="purchdate" id="Date" value={formData.purchdate} onChange={handleChange} />
+            <input type="date" name="purchdate" id="Date" defaultValue={clothing.purchdate}  />
             <label htmlFor="price">Purchase Price</label>
-            <input type="number" name="price" id="price" value={formData.price} onChange={handleChange} />
+            <input type="number" name="price" id="price" defaultValue={clothing.price}  />
              <button type="submit" >Add to Closet</button>
              {errorMessage && <p>{errorMessage}</p>}
          <button>Wear</button>
         <button>Edit</button>
         <button>Remove from Closet</button>
         </form>
-       
-        <script src="" async defer></script>
+    
   </main>
    
     </div>
