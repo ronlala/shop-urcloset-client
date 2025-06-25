@@ -67,7 +67,7 @@ function Closet() {
 
   return (
     <div>
-      <main>
+      <main >
         <div className="body_sizing">
           <h1>Your Closet</h1>
           <div className="body_closet_addto">
