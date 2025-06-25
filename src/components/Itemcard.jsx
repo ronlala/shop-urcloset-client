@@ -7,28 +7,55 @@ function Itemcard(){
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;  
 const {clothingId} = useParams()
 console.log(clothingId);
-const [clothing, setClothing] = useState({});
 
-// const navigate = useNavigate();
-//use state goes here for pulling 1 item
-    //Const clothing id = useParams()
-    // const navigate = use navigate()
-    // Use effect to fetch the base API that is in the closet component and slash with just clothing id and matches the use param
-    // const 
-    
-    // For delete you will need a handler function for deleting closet items 
-    // handler functions for the handle delete book 
-    // fetch with the method of delete with book id 
-// state to hold single item 
-// const [clothingItem, setClothingItem] = useState(null);
+const [clothing, setClothing] = useState({});
+const [loading, setLoading] = useState(true); // Add loading state
+const [fetchError, setFetchError] = useState(null);
+
 const [errorMessage, SetErrorMessage] = useState("");
     
-  useEffect(()=> {
-  fetch(`${API_BASE_URL}/${clothingId}`)
-  .then((response) => response.json())
-  .then((data) => setClothing(data));
-  },[clothingId]);
-  console.log(clothing);
+
+ useEffect(() => {
+        const fetchClothingItem = async () => {
+            setLoading(true); // Set loading to true before fetch
+            setFetchError(null); // Clear previous errors
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/${clothingId}`);
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error.message || 'Failed to fetch clothing item');
+                }
+
+                const data = await response.json();
+                setClothing(data.data.closetItem); // Access the actual item from data.data.closetItem
+            } catch (error) {
+                console.error("Error fetching clothing item:", error);
+                setFetchError(error.message); // Set fetch-specific error message
+            } finally {
+                setLoading(false); // Set loading to false after fetch completes (success or error)
+            }
+        };
+
+        if (clothingId) { // Only fetch if clothingId exists
+            fetchClothingItem();
+        }
+
+    }, [clothingId, API_BASE_URL]); // Add API_BASE_URL to dependencies if it can change
+
+    console.log("Current clothing state:", clothing);
+    console.log("Current fetchError state:", fetchError);
+    console.log("Current loading state:", loading);
+
+
+
+  // useEffect(()=> {
+  // fetch(`${API_BASE_URL}/${clothingId}`)
+  // .then((response) => response.json())
+  // .then((data) => setClothing(data));
+  // },[clothingId]);
+  // console.log(clothing);
 //use state for form inputs 
 // const [formData, setFormData] = useState({
 //     brand: "",
@@ -55,27 +82,30 @@ console.log(API_BASE_URL);
       color: e.target.color.value,
       size: e.target.size.value,
      category: e.target.category.value, 
-      purchdate: e.target.datePurchased.value,
-      price: parseInt( e.target.purchasePrice.value) || 0,
+      purchdate: e.target.purchdate.value,
+      price: parseInt( e.target.price.value) || 0,
     }
     console.log(body);
-    console.log("submitted")
-    // const URL = API_BASE_URL;
-
-  fetch(`${API_BASE_URL}update/${clothingId}`,{
+ try{
+  const response = await fetch(`${API_BASE_URL}update/${clothingId}`,{
      method: "PUT", 
      headers: {"Content-Type": "application/json",
      },
-            body: JSON.stringify(body)})
-        .then((response) =>response.json())
-        .then((result) => {
-            console.log(result);
-            // setFormData(result);
-            SetErrorMessage(result.error.message);})
-        .catch(error => {
-            console.log(error)
-            SetErrorMessage(error.message);  })
-        };
+            body: JSON.stringify(body)});
+       const result = await response.json();
+
+            if (!response.ok) {
+                SetErrorMessage(result.error.message || "Failed to update item.");
+            } else {
+                SetErrorMessage("Item updated successfully!"); // Provide success message
+                // Optionally update the local state with the new data
+                setClothing(result.data.closetItem);
+            }
+        } catch (error) {
+            console.error("Error updating clothing item:", error);
+            SetErrorMessage(error.message);
+        }
+    };
 
    console.log(errorMessage);
 
@@ -125,7 +155,7 @@ console.log(API_BASE_URL);
                 <option value="Outerwear">Outerwear</option>
             </select>
             <label htmlFor="purchdate">Date Purchased</label>
-            <input type="date" name="purchdate" id="Date" defaultValue={clothing.purchdate}  />
+            <input type="date" name="purchdate" id="purchdate" defaultValue={clothing.purchdate}  />
             <label htmlFor="price">Purchase Price</label>
             <input type="number" name="price" id="price" defaultValue={clothing.price}  />
              <button type="submit" >Add to Closet</button>
